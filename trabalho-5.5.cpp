@@ -1,4 +1,5 @@
-//PROGRAMA MATRICULA DE ALUNOS
+
+   //PROGRAMA MATRICULA DE ALUNOS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -45,19 +46,25 @@ char lateral_base_direita = 217;
 char centro_esquerda = 195;
 char centro_direita = 180;
 
+
 int main (void){
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
+	SetConsoleTextAttribute(hConsole,30);
 	while (opc != 0){
         system("cls");
-        caixaMenu();
-        gotoxy(30,11);
+        
+		caixaMenu();
+        
+		gotoxy(30,11);
 		scanf("%d", &opc);
-        if(opc == 1){
+        
+		if(opc == 1){
             inserir();
         }
         	if(opc == 2){
         	excluir();
-        	}
+    		}
     
         		if(opc == 3){
             		listar();
@@ -78,7 +85,7 @@ void inserir (){
         system("pause");
     }
     else{
-        printf("======= Vetor cheio - Impossível cadastrar aluno ======\n\n");
+        printf("=======!!! Vetor cheio - Impossível cadastrar aluno !!! ======\n\n");
     }
    
 }
@@ -93,7 +100,7 @@ void excluir (){
 		system ("pause");		
 	}
 	else {	
-	printf("\t DIGITE A MATRICULA PARA EXCLUIR \n\n");
+	printf("\t [DIGITE A MATRICULA PARA EXCLUIR]\n\n");
 	printf("Matricula: ");
 	scanf("%i",&matricula);
     printf("Deseja excluir? (1) sim (2) não");
@@ -102,7 +109,7 @@ void excluir (){
     	total_registrado--;
     	aluno[matricula].matricula = 0;
 	 		if(matricula != aluno[matricula].matricula){
-     			printf("\n======= Matrícula não cadastrada ==========\n");
+     			printf("\n======= [Matrícula não cadastrada]==========\n");
      		}
     		system("pause");
      	}
@@ -116,26 +123,21 @@ void listar(){
 	
 	system("cls");
      if(total_registrado < 0){
-      printf("\n======= Nao existe nenhum aluno cadastrado ======\n");
+      printf("\n======= [Nao existe nenhum aluno cadastrado] ======\n");
     }
     else{
     
-	
-		printf(" LISTAR \n\n");
-		while (aux_contador_lista < espCentro_lista){
-        printf("%c", centro);
-        aux_contador_lista++;
-	    }printf("\n");
+		printf("\n\t        [LISTAR]       \n\n");
+		printf("============================================================\n");
+		
 		for(int i = 0 ; i < total_registrado; i++){
-        printf(" Matricula    Nome    Nota 1    Nota 2    Media\n");
-		while (aux_contador_lista < espCentro_lista){
-        printf("%c", centro);
-        aux_contador_lista++;
-	    }
-	    printf("\n");
+        
+		printf(" Matricula    Nome    Nota 1    Nota 2    Media\n\n");
+        printf("============================================================\n\n");
 		printf(" %i            %s       %.2f      %.2f      %.3f  \n\n ",aluno[i].matricula,aluno[i].nome,aluno[i].nota1,aluno[i].nota2,
 		(aluno[i].nota1 + aluno[i].nota2) / 2);
-	    	}
+		printf("============================================================\n");
+		}
     		system("pause");
 		}
 }
